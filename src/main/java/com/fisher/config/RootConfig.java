@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.util.regex.Pattern;
 
 @Configuration
-@ComponentScan(basePackages={"com.fisher"},
+@ComponentScan(basePackages={"com.fisher.config"},
     excludeFilters={
         @Filter(type= FilterType.ANNOTATION, value=EnableWebMvc.class)
     })
