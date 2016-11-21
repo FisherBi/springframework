@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.fisher.config")
+@ComponentScan("com.fisher")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
   @Bean
@@ -26,6 +26,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
   @Override
   public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
     configurer.enable();
+  }
+
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    // TODO Auto-generated method stub
+    super.addResourceHandlers(registry);
   }
 
 }
