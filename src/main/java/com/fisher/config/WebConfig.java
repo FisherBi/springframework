@@ -20,6 +20,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     InternalResourceViewResolver resolver = new InternalResourceViewResolver();
     resolver.setPrefix("/WEB-INF/views/");
     resolver.setSuffix(".jsp");
+    resolver.setExposeContextBeansAsAttributes(true);
     return resolver;
   }
   
@@ -31,7 +32,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     // TODO Auto-generated method stub
-    super.addResourceHandlers(registry);
+    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
   }
 
 }
