@@ -2,6 +2,6 @@ package com.fisher.config.security;
 
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
-@EnableGlobalMethodSecurity
+//@EnableGlobalMethodSecurity
 public class MethodSecurityConfig {
 }
