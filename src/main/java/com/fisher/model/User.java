@@ -3,11 +3,13 @@ package com.fisher.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by fisbii on 16-11-28.
  */
 @Entity
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue
