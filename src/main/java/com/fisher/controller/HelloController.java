@@ -16,4 +16,9 @@ public class HelloController {
     public String home(Model model){
         return "home";
     }
+
+    @RequestMapping(value = "/login.html")
+    public String goLoginPage() {
+        return "login";
+    }
 }
