@@ -10,6 +10,7 @@
 <html>
 <body>
 <h2>Hello World123!</h2>
-<a href="/login.html">请先登陆</a>
+<a href="#">请先登陆</a>
+<a href="/addUser.html">添加用户</a>
 </body>
 </html>
