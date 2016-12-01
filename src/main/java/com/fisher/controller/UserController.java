@@ -2,6 +2,7 @@ package com.fisher.controller;
 
 import com.fisher.model.User;
 import com.fisher.repository.UserRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @Controller
 public class UserController {
+    private static Logger logger = Logger.getLogger(UserController.class);
     @Autowired
     UserRepository userRepository;
 
@@ -28,6 +30,7 @@ public class UserController {
     // 用户管理
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String users(ModelMap modelMap){
+        logger.info("get all users");
         // 找到user表里面的所有记录
         List<User> userList = userRepository.findAll();
 

@@ -27,7 +27,6 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan
 @EnableJpaRepositories("com.fisher.repository")
 @PropertySource(value="classpath:application.properties")
 public class JpaConfig {
