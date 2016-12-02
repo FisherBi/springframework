@@ -10,7 +10,6 @@
 <html>
 <body>
 <h2>Hello World123!</h2>
-<a href="#">请先登陆</a>
-<a href="/addUser.html">添加用户</a>
+<a href="/users">用户管理</a><br>
 </body>
 </html>
