@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,7 +23,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/addUser.html")
+    @RequestMapping(value = "/addUser")
     public String goLoginPage() {
         return "addUser";
     }
@@ -50,6 +51,45 @@ public class UserController {
         userRepository.saveAndFlush(userEntity);
 
         // 返回重定向页面
+        return "redirect:/users";
+    }
+
+    // 查看用户详细信息
+    // @PathVariable可以收集url中的变量，需匹配的变量用{}括起来
+    // 例如：访问 localhost:8080/showUser/1 ，将匹配 userId = 1
+    @RequestMapping(value = "/showUser/{userId}", method = RequestMethod.GET)
+    public String showUser( @PathVariable("userId") Long userId, ModelMap modelMap ){
+        User user = userRepository.findOne(userId);
+        modelMap.addAttribute("user", user);
+        return "userDetail";
+    }
+
+    // 更新用户信息页面
+    @RequestMapping(value = "/updateUser/{userId}", method = RequestMethod.GET)
+    public String updateUser(@PathVariable("userId") Long userId, ModelMap modelMap){
+        User user = userRepository.findOne(userId);
+        modelMap.addAttribute("user", user);
+        return "updateUser";
+    }
+    // 处理用户修改请求
+    @RequestMapping(value = "/updateUserPost", method = RequestMethod.POST)
+    public String updateUserPost(@ModelAttribute("user") User userEntity){
+        userRepository.updateUser(
+                userEntity.getFirstName(),
+                userEntity.getLastName(),
+                userEntity.getPassword(),
+                userEntity.getId()
+        );
+        return "redirect:/users";
+    }
+
+    // 删除用户
+    @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.GET)
+    public String deleteUser(@PathVariable("userId") Long userId){
+        // 删除id为userId的用户
+        userRepository.delete(userId);
+        // 立即刷新数据库
+        userRepository.flush();
         return "redirect:/users";
     }
 
