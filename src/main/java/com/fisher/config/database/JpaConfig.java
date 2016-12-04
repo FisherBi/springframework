@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 
 /**
@@ -50,6 +51,9 @@ public class JpaConfig {
         entityManagerFactory.setDataSource(dataSource);
         entityManagerFactory.setJpaVendorAdapter(jpaVendeorAdapter);
         entityManagerFactory.setPackagesToScan("com.fisher.model");
+        Properties jpaProperties = new Properties();
+        jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        entityManagerFactory.setJpaProperties(jpaProperties);
         return entityManagerFactory;
     }
 
@@ -59,7 +63,7 @@ public class JpaConfig {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setDatabase(Database.MYSQL);
         adapter.setShowSql(true);
-        adapter.setGenerateDdl(false);
+        adapter.setGenerateDdl(true);
         adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5InnoDBDialect");
         return adapter;
     }
