@@ -18,19 +18,19 @@ import org.springframework.data.redis.core.RedisTemplate;
 @EnableCaching
 public class RedisCacheConfig {
     @Bean
-    public CacheManager redisCacheManager(RedisTemplate redisTemplate){
-        return new RedisCacheManager(redisTemplate);
+    public CacheManager redisCacheManager(RedisTemplate redisCacheTemplate){
+        return new RedisCacheManager(redisCacheTemplate);
     }
     @Bean
-    public JedisConnectionFactory redisConnectionFactory(){
+    public JedisConnectionFactory redisCacheConnectionFactory(){
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
         jedisConnectionFactory.afterPropertiesSet();
         return jedisConnectionFactory;
     }
     @Bean
-    public RedisTemplate<String,String> redisTemplate(RedisConnectionFactory redisConnectionFactory){
+    public RedisTemplate<String,String> redisCacheTemplate(RedisConnectionFactory redisCacheConnectionFactory){
         RedisTemplate<String,String> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        redisTemplate.setConnectionFactory(redisCacheConnectionFactory);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }

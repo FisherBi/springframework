@@ -16,7 +16,7 @@ public class RedisConfig {
 	public RedisConnectionFactory redisCF() {
 		return new JedisConnectionFactory();
 	}
-	
+
 	@Bean
 	public RedisTemplate<String, Product> redisTemplate(RedisConnectionFactory redisCF) {
 		RedisTemplate<String, Product> redis = new RedisTemplate<String, Product>();
