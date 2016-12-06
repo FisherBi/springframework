@@ -1,5 +1,6 @@
 package com.fisher.config.cache;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -17,7 +18,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 @EnableCaching
 public class RedisCacheConfig {
     @Bean
-    @Qualifier("redisCacheManager")
     public CacheManager redisCacheManager(RedisTemplate redisTemplate){
         return new RedisCacheManager(redisTemplate);
     }

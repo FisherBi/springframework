@@ -16,7 +16,6 @@ import org.springframework.core.io.ClassPathResource;
 @EnableCaching
 public class EhCacheConfig {
     @Bean
-    @Qualifier("ehCacheCacheManager")
     public EhCacheCacheManager ehCacheCacheManager(CacheManager cm) {
         return new EhCacheCacheManager(cm);
     }
