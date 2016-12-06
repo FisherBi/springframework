@@ -19,7 +19,6 @@ import java.util.List;
  */
 @Configuration
 @EnableCaching
-@ComponentScan
 public class CachingConfiguration implements CachingConfigurer {
     @Autowired
     private CacheManager ehCacheCacheManager;
