@@ -22,11 +22,9 @@ import java.util.List;
 @ComponentScan
 public class CachingConfiguration implements CachingConfigurer {
     @Autowired
-    @Qualifier("ehCacheCacheManager")
     private CacheManager ehCacheCacheManager;
 
     @Autowired
-    @Qualifier("redisCacheManager")
     private CacheManager redisCacheManager;
 
 

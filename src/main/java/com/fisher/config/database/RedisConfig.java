@@ -1,6 +1,8 @@
 package com.fisher.config.database;
 
 import com.fisher.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -16,9 +18,9 @@ public class RedisConfig {
 	}
 	
 	@Bean
-	public RedisTemplate<String, Product> redisTemplate(RedisConnectionFactory cf) {
+	public RedisTemplate<String, Product> redisTemplate(RedisConnectionFactory redisCF) {
 		RedisTemplate<String, Product> redis = new RedisTemplate<String, Product>();
-		redis.setConnectionFactory(cf);
+		redis.setConnectionFactory(redisCF);
 		return redis;
 	}
 	
