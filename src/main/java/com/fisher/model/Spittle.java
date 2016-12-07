@@ -29,6 +29,26 @@ public class Spittle {
     this.latitude = latitude;
   }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+  public void setTime(Date time) {
+    this.time = time;
+  }
+
+  public void setLatitude(Double latitude) {
+    this.latitude = latitude;
+  }
+
+  public void setLongitude(Double longitude) {
+    this.longitude = longitude;
+  }
+
   public long getId() {
     return id;
   }
@@ -49,5 +69,14 @@ public class Spittle {
     return latitude;
   }
 
-  
+  @Override
+  public String toString() {
+    return "Spittle{" +
+            "id=" + id +
+            ", message='" + message + '\'' +
+            ", time=" + time +
+            ", latitude=" + latitude +
+            ", longitude=" + longitude +
+            '}';
+  }
 }
