@@ -9,6 +9,6 @@
   </head>
   <body>
     <h1>Welcome to Spring framework!</h1>
-
+    <a href="<c:url value="/spittles" />">Spittles</a> |
   </body>
 </html>
