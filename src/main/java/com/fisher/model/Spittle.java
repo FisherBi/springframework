@@ -7,13 +7,14 @@ import java.util.Date;
 @Entity
 @Table(name = "spittle")
 @NamedQueries(value = {
-        @NamedQuery(name = "spittle.findSpittles", query = "select spittle from Spittle spittle where spittle.id < :max order by spittle.created_at desc")
+        @NamedQuery(name = "spittle.findSpittles", query = "select spittle from Spittle spittle where spittle.id < :max order by spittle.time desc")
 })
 public class Spittle {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String message;
+  @Column(name = "created_at")
   private Date time;
   private Double latitude;
   private Double longitude;
