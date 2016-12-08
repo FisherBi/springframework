@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 public class CommonInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
+        servletContext.setInitParameter("contextConfigLocation","classpath:applicationContext.xml");
         servletContext.setInitParameter("webAppRootKey","springframework.root");
         servletContext.setInitParameter("log4jConfigLocation","classpath:log4j.properties");
         servletContext.setInitParameter("log4jRefreshInterval","3000");
