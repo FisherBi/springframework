@@ -2,6 +2,7 @@ package com.fisher.controller;
 
 import com.fisher.model.User;
 import com.fisher.repository.UserRepository;
+import com.fisher.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ public class UserController {
     private static Logger logger = Logger.getLogger(UserController.class);
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/addUser")
     public String goLoginPage() {
@@ -44,12 +47,7 @@ public class UserController {
     // 添加用户处理
     @RequestMapping(value = "/addUserPost", method = RequestMethod.POST)
     public String addUserPost(@ModelAttribute("user") User userEntity){
-        // 向数据库添加一个用户
-        //userRepository.save(userEntity);
-
-        // 向数据库添加一个用户，并将内存中缓存区的数据刷新，立即写入数据库，之后才可以进行访问读取
-        userRepository.saveAndFlush(userEntity);
-
+        userService.saveUser(userEntity);
         // 返回重定向页面
         return "redirect:/users";
     }
