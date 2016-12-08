@@ -11,7 +11,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan(basePackages = "com.fisher.common.aop")
+@ComponentScan("com.fisher.service")
 public class AopConfig {
     @Bean
     public LogAop logAop(){
