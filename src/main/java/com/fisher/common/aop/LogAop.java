@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 //指定切面的优先级，当有多个切面时，数值越小优先级越高
 @Order(1)
 @Aspect
-@Component
 public class LogAop {
 
     private Logger logger = Logger.getLogger(LogAop.class);
