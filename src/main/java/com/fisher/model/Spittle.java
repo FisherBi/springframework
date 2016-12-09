@@ -49,7 +49,7 @@ public class Spittle {
     this.longitude = longitude;
   }
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
