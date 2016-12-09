@@ -22,8 +22,6 @@ import java.util.List;
 public class UserController {
     private static Logger logger = Logger.getLogger(UserController.class);
     @Autowired
-    UserRepository userRepository;
-    @Autowired
     UserService userService;
 
     @RequestMapping(value = "/addUser")
@@ -36,7 +34,7 @@ public class UserController {
     public String users(ModelMap modelMap){
         logger.info("get all users");
         // 找到user表里面的所有记录
-        List<User> userList = userRepository.findAll();
+        List<User> userList = userService.getUserList();
 
         // 将所有的记录传递给返回的jsp页面
         modelMap.addAttribute("userList", userList);
@@ -57,7 +55,7 @@ public class UserController {
     // 例如：访问 localhost:8080/showUser/1 ，将匹配 userId = 1
     @RequestMapping(value = "/showUser/{userId}", method = RequestMethod.GET)
     public String showUser( @PathVariable("userId") Long userId, ModelMap modelMap ){
-        User user = userRepository.findOne(userId);
+        User user = userService.getUserById(userId);
         modelMap.addAttribute("user", user);
         return "userDetail";
     }
@@ -65,29 +63,21 @@ public class UserController {
     // 更新用户信息页面
     @RequestMapping(value = "/updateUser/{userId}", method = RequestMethod.GET)
     public String updateUser(@PathVariable("userId") Long userId, ModelMap modelMap){
-        User user = userRepository.findOne(userId);
+        User user = userService.getUserById(userId);
         modelMap.addAttribute("user", user);
         return "updateUser";
     }
     // 处理用户修改请求
     @RequestMapping(value = "/updateUserPost", method = RequestMethod.POST)
     public String updateUserPost(@ModelAttribute("user") User userEntity){
-        userRepository.updateUser(
-                userEntity.getFirstName(),
-                userEntity.getLastName(),
-                userEntity.getPassword(),
-                userEntity.getId()
-        );
+        userService.updateUser(userEntity);
         return "redirect:/users";
     }
 
     // 删除用户
     @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable("userId") Long userId){
-        // 删除id为userId的用户
-        userRepository.delete(userId);
-        // 立即刷新数据库
-        userRepository.flush();
+        userService.deleteUserById(userId);
         return "redirect:/users";
     }
 
