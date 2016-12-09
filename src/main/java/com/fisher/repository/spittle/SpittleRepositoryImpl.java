@@ -13,10 +13,10 @@ public class SpittleRepositoryImpl implements SpittleCompicatedOperation {
     @PersistenceContext
     private EntityManager em;
     @Override
-    public List<Spittle> findSpittles(long max, int count) {
+    public List<Spittle> findSpittles(long max, int firstPage, int count) {
         List<Spittle> spittles = em.createNamedQuery("spittle.findSpittles")
                 .setParameter("max", max)
-                .setFirstResult(0)
+                .setFirstResult(firstPage)
                 .setMaxResults(count)
                 .getResultList();
         return spittles;
