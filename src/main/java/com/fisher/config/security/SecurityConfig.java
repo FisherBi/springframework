@@ -8,8 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 
-@Configuration
-@EnableWebMvcSecurity
+//@Configuration
+//@EnableWebMvcSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
   
 //  @Override
@@ -38,10 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth
-      .inMemoryAuthentication()
-        .withUser("user").password("password").roles("USER").and()
-            .withUser("admin").password("password").roles("USER", "ADMIN");
+//    auth
+//      .inMemoryAuthentication()
+//        .withUser("user").password("password").roles("USER").and()
+//            .withUser("admin").password("password").roles("USER", "ADMIN");
   }
 
 }
